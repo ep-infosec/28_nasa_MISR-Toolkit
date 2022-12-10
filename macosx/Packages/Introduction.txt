@@ -1,0 +1,12 @@
+Welcome to the MISR Toolkit OS X Installer. 
+
+
+This package will install files to the following locations:
+
+
+Source for HDF4, HDF5, NetCDF4, HDF-EOS2, Libjpeg, and zlib: /Applications/Mtk_thirdparty
+
+Install of HDF4, HDF5, NetCDF4, HDF-EOS2, Libjpeg, and zlib: /usr/local/hdfeoslibs
+
+Install of MISR Toolkit: /Applications/Mtk-1.5.1
+

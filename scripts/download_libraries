@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+origdir=`pwd`
+scriptdir=`dirname $0`
+if [ "$scriptdir" != "scripts" ]; then
+   origdir=`dirname $origdir`
+fi
+
+#
+# Select or create ThirdParty library directory
+#
+
+default_libdir="`dirname $origdir`/Mtk_thirdparty"
+/bin/echo -n "Enter thirdparty library tarball directory ($default_libdir): "
+read libdir
+if [ ! "$libdir" ]; then
+    libdir=$default_libdir
+fi
+if [ ! -d "$libdir" ]; then
+    /bin/echo "Thirdparty library tarball directory does not exist."
+    /bin/echo -n "Do you want to create it (y/n)? "
+    read ans
+    if [ "$ans" = "y" -o "$ans" = "Y" ]; then
+	mkdir $libdir
+    else
+	exit 1
+    fi
+fi
+
+#
+# Download ThirdParty libraries
+#
+
+cd $libdir
+curl -L -O https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/previous_releases/zlib-1.2.5.tar.gz
+curl -L -O https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/previous_releases/jpegsrc.v6b.tar.gz
+curl -L -O https://support.hdfgroup.org/ftp/HDF/releases/HDF4.2.10/src/hdf-4.2.10.tar.gz
+curl -L -O https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.16/src/hdf5-1.8.16.tar.gz
+curl -L -O https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/previous_releases/HDF-EOS2.18v1.00.tar.Z
+curl -L -O ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.4.0.tar.gz
